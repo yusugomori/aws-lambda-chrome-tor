@@ -1,0 +1,39 @@
+service:
+  name: chrome-tor
+
+custom:
+  stage: ${opt:stage, self:provider.stage}
+  serverless-offline:
+    httpPort: 8080
+    lambdaPort: 8888
+  webpack:
+    webpackConfig: ./webpack.config.js
+    includeModules: false
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: development
+  profile: ${opt:profile, ''}
+  region: ap-northeast-1
+  deploymentBucket: # serverless-layers also use this bucket
+    name: ${cf:${self:service.name}-${self:custom.stage}-s3.ServerlessBucket}
+  iamRoleStatements: ${file(./cfn-templates/iam.yml)}
+
+package:
+  excludeDevDependencies: true
+  exclude:
+    - package.json
+
+plugins:
+  - serverless-layers
+  - serverless-offline
+  - serverless-webpack
+
+functions:
+  app:
+    handler: app/main.handler
+    timeout: 60
+    memorySize: 1600
+    layers:
+      - ${cf:tor-layer-production.TorLayerExport}  # Use Tor Layer
