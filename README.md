@@ -7,6 +7,8 @@ Use headless chrome with tor in aws lambda.
 - serverless
 - [aws-tor-layer](https://github.com/yusugomori/aws-tor-layer): Tor layer must be deployed in advance.
 
+You need to manually install and start `tor` for local development.
+
 ## Development
 
 First, create deployment bucket for serverless with below:
