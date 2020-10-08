@@ -23,10 +23,13 @@ Options
   PROFILE=<profile>   AWS IAM profile. Default: default
 ```
 
-Try 
+Then, try below for local execution:
 
 ```
-$ sls invoke local -f handler
+$ sls invoke local -f app [options]
+
+Options
+  --profile <profile>  AWS IAM profile.
 ```
 
 ## Deployment
