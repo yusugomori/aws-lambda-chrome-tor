@@ -19,7 +19,7 @@ export const UA =
 let path: string = ''
 switch (os) {
   case 'win':
-    path = 'C:\\Program Files (x86)\\Google\\Chrome\\Application'
+    path = 'C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe'
     break
   case 'mac':
     path = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
